@@ -1,19 +1,14 @@
 package com.tyntec.coding.player;
 
-import com.tyntec.coding.handshape.HandShape;
 import com.tyntec.coding.player.strategy.FixedMovePlayerStrategy;
 import com.tyntec.coding.player.strategy.RandomPlayerStrategy;
-import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.util.ReflectionUtils;
-import org.mockito.Mockito;
 
 import java.util.Random;
 
 import static com.tyntec.coding.handshape.HandShape.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 

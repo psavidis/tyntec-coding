@@ -1,9 +1,6 @@
 package com.tyntec.coding;
 
 import com.tyntec.coding.player.PlayerFactory;
-import com.tyntec.coding.player.strategy.FixedMovePlayerStrategy;
-import com.tyntec.coding.player.StrategyPlayer;
-import com.tyntec.coding.player.strategy.RandomPlayerStrategy;
 
 import java.util.List;
 

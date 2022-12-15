@@ -54,8 +54,8 @@ public class PlayerPairsTest {
     private void assert_isPairedWith(Multimap<String, String> results, String player, String... players) {
         var result = results.get(player);
 
-        assertEquals(players.length, result.size(), "Results of "+ player + " should be exactly " + players.length);
-        for(String p : players) {
+        assertEquals(players.length, result.size(), "Results of " + player + " should be exactly " + players.length);
+        for (String p : players) {
             assertTrue(result.contains(p));
         }
     }

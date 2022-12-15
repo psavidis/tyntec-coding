@@ -49,8 +49,8 @@ public class GameTest {
         assertEquals(1L, game.getTotalRounds());
         assertEquals(1, game.getTotalTies());
 
-        assertPlayerWins("p1",0, game);
-        assertPlayerWins("p2",0, game);
+        assertPlayerWins("p1", 0, game);
+        assertPlayerWins("p2", 0, game);
     }
 
     @Test
@@ -65,8 +65,8 @@ public class GameTest {
         assertEquals(2L, game.getTotalRounds());
         assertEquals(0, game.getTotalTies());
 
-        assertPlayerWins("p1",2, game);
-        assertPlayerWins("p2",0, game);
+        assertPlayerWins("p1", 2, game);
+        assertPlayerWins("p2", 0, game);
     }
 
     private void assertPlayerWins(String playerName, long playerWins, Game game) {
