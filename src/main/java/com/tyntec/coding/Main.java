@@ -26,6 +26,5 @@ public class Main {
         });
 
         System.out.println("Tie: " + game.getTotalTies() + " of " + game.getTotalRounds());
-
     }
 }
