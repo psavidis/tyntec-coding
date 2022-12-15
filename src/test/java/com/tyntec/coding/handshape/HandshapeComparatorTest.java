@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class HandshapeComparatorTest {
 
-    private HandshapeComparator comparator = HandshapeComparator.newComparator();
+    private HandShapeComparator comparator = HandShapeComparator.newComparator();
 
     @Test
     void compare_null_arguments_shouldReturn_IllegalArgumentException() {

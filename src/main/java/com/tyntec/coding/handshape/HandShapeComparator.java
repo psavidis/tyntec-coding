@@ -13,12 +13,12 @@ import static com.tyntec.coding.player.PlayerMoveResult.*;
  * Compares two handshakes and can determine if the first one wins, loses or gets a tie against
  * the second argument of the comparison.
  */
-public class HandshapeComparator implements Comparator<HandShape> {
+public class HandShapeComparator implements Comparator<HandShape> {
 
     private final Map<HandShape, HandShape> winsAgainst;
     private final Map<HandShape, HandShape> lossesAgainst;
 
-    private HandshapeComparator(Map<HandShape, HandShape> winsAgainst, Map<HandShape, HandShape> lossesAgainst) {
+    private HandShapeComparator(Map<HandShape, HandShape> winsAgainst, Map<HandShape, HandShape> lossesAgainst) {
         Objects.requireNonNull(winsAgainst, "win mappings cannot be null");
         Objects.requireNonNull(lossesAgainst, "lose mappings cannot be null");
 
@@ -31,7 +31,7 @@ public class HandshapeComparator implements Comparator<HandShape> {
     /**
      * Static factory method to create a new handshape-comparator.
      */
-    public static HandshapeComparator newComparator() {
+    public static HandShapeComparator newComparator() {
         final var winsAgainst = Map.of(
                 SCISSORS, PAPER,
                 ROCK, SCISSORS,
@@ -44,7 +44,7 @@ public class HandshapeComparator implements Comparator<HandShape> {
                 PAPER, SCISSORS
         );
 
-        return new HandshapeComparator(winsAgainst, lossesAgainst);
+        return new HandShapeComparator(winsAgainst, lossesAgainst);
     }
 
     @Override
