@@ -2,7 +2,7 @@ package com.tyntec.coding;
 
 import com.google.common.collect.Multimap;
 import com.tyntec.coding.exception.GameException;
-import com.tyntec.coding.handshape.HandshapeComparator;
+import com.tyntec.coding.handshape.HandShapeComparator;
 import com.tyntec.coding.player.Player;
 import com.tyntec.coding.player.PlayerPairs;
 
@@ -51,14 +51,14 @@ public final class Game {
      * Executes the game by running all the rounds.
      */
     public void execute() {
-        var comparator = HandshapeComparator.newComparator();
+        var comparator = HandShapeComparator.newComparator();
 
         for (int i = 0; i < totalRounds; i++) {
             executeRound(comparator);
         }
     }
 
-    private void executeRound(HandshapeComparator comparator) {
+    private void executeRound(HandShapeComparator comparator) {
         uniquePlayerNamePairs.forEach((playerName1, playerName2) -> {
             var player1 = playersByName.get(playerName1);
             var player2 = playersByName.get(playerName2);

@@ -12,5 +12,8 @@ public interface Player {
      */
     HandShape makeMove();
 
+    /**
+     * Retrieves the players name.
+     */
     String getName();
 }
