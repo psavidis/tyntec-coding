@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static com.tyntec.coding.handshape.HandShape.PAPER;
-import static com.tyntec.coding.handshape.HandShape.SCISSORS;
+import static com.tyntec.coding.handshape.HandShape.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
@@ -67,6 +66,40 @@ public class GameTest {
 
         assertPlayerWins("p1", 2, game);
         assertPlayerWins("p2", 0, game);
+    }
+
+    @Test
+    void execute_game_withThreePlayers_TIE() {
+        var game = new Game(List.of(
+                new StrategyPlayer("p1", new FixedMovePlayerStrategy(PAPER)),
+                new StrategyPlayer("p2", new FixedMovePlayerStrategy(PAPER)),
+                new StrategyPlayer("p3", new FixedMovePlayerStrategy(PAPER))
+        ), 1);
+
+        game.execute();
+
+        assertEquals(1, game.getTotalTies());
+        assertEquals(1, game.getTotalRounds());
+        assertPlayerWins("p1", 0, game);
+        assertPlayerWins("p2", 0, game);
+        assertPlayerWins("p3", 0, game);
+    }
+
+    @Test
+    void execute_game_withThreePlayers() {
+        var game = new Game(List.of(
+                new StrategyPlayer("p1", new FixedMovePlayerStrategy(ROCK)),
+                new StrategyPlayer("p2", new FixedMovePlayerStrategy(PAPER)),
+                new StrategyPlayer("p3", new FixedMovePlayerStrategy(SCISSORS))
+        ), 1);
+
+        game.execute();
+
+        assertEquals(1, game.getTotalTies());
+        assertEquals(1, game.getTotalRounds());
+        assertPlayerWins("p1", 0, game);
+        assertPlayerWins("p2", 0, game);
+        assertPlayerWins("p3", 0, game);
     }
 
     private void assertPlayerWins(String playerName, long playerWins, Game game) {

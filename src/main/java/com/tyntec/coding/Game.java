@@ -6,10 +6,7 @@ import com.tyntec.coding.handshape.HandShapeComparator;
 import com.tyntec.coding.player.Player;
 import com.tyntec.coding.player.PlayerPairs;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -59,6 +56,7 @@ public final class Game {
     }
 
     private void executeRound(HandShapeComparator comparator) {
+        var winners = new LinkedList<String>();
         uniquePlayerNamePairs.forEach((playerName1, playerName2) -> {
             var player1 = playersByName.get(playerName1);
             var player2 = playersByName.get(playerName2);
@@ -69,14 +67,25 @@ public final class Game {
             var result = comparator.compareAsResult(move1, move2);
 
             if (result.isWin()) {
-                winsByPlayerName.get(playerName1).incrementAndGet();
+                winners.add(playerName1);
             } else if (result.isLoss()) {
-                winsByPlayerName.get(playerName2).incrementAndGet();
-            } else {
-                totalTies++;
+                winners.add(playerName2);
             }
 
         });
+
+        Map<String, Long> roundWinsByPlayerName = winners.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        boolean allPlayersHadTie = winners.isEmpty() || allPlayersHaveEqualWins(roundWinsByPlayerName);
+
+        if (allPlayersHadTie) {
+            totalTies++;
+            return;
+        }
+
+        var winner = Collections.max(roundWinsByPlayerName.entrySet(), Map.Entry.comparingByValue()).getKey();
+        winsByPlayerName.get(winner).incrementAndGet();
     }
 
     /**
@@ -120,5 +129,25 @@ public final class Game {
             results.put(p.getName(), new AtomicLong(0L));
         }
         return results;
+    }
+
+    private boolean playersHadTie(List<String> winners) {
+        if (winners.isEmpty()){
+            return true;
+        }
+
+        Map<String, Long> roundWinsByPlayerName = winners.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        return allPlayersHaveEqualWins(roundWinsByPlayerName);
+    }
+
+    private boolean allPlayersHaveEqualWins(Map<String, Long> roundWinsByPlayerName) {
+        if (roundWinsByPlayerName.size() < 2) {
+            return false;
+        }
+
+        Set<Long> values = new HashSet<>(roundWinsByPlayerName.values());
+        return values.size() == 1;
     }
 }
