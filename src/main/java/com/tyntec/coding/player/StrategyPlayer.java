@@ -32,7 +32,9 @@ public class StrategyPlayer implements Player {
 
     @Override
     public HandShape makeMove() {
-        return strategy.apply();
+        var result = strategy.apply();
+
+        return result;
     }
 
     @Override

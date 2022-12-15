@@ -7,9 +7,9 @@ import static com.tyntec.coding.player.PlayerMoveResult.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class HandShapeComparatorTest {
+public class HandshapeComparatorTest {
 
-    private HandShapeComparator comparator = HandShapeComparator.newComparator();
+    private HandshapeComparator comparator = HandshapeComparator.newComparator();
 
     @Test
     void compare_null_arguments_shouldReturn_IllegalArgumentException() {
